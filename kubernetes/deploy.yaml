@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-deploy
+  namespace: deploy-area
 spec:
   replicas: 3
   selector:
@@ -23,6 +24,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-deploy
+  namespace: deploy-area
 spec:
   replicas: 3
   selector:

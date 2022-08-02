@@ -21,8 +21,7 @@ pipeline {
         }
         stage('deploy') {
             steps {
-                sh 'cd kubernetes/'
-                sh 'kubectl apply .'
+                sh 'kubectl apply -Rf kubernetes/ '
             }
         }
     }
