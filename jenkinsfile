@@ -7,7 +7,7 @@ pipeline {
                 git 'https://github.com/MahmoudAbdelFatah/DevOps-Challenge-Demo-Code.git'
             }
         }
-        stage('build') {
+        stage('CI') {
             steps {
                 echo 'building docker image...'
                 withCredentials([
@@ -19,7 +19,7 @@ pipeline {
                 }
             }
         }
-        stage('deploy') {
+        stage('CD') {
             steps {
                 sh 'kubectl apply -Rf kubernetes/ '
             }
