@@ -70,3 +70,4 @@ Copyright (c) 2019 by the Tradebyte Software GmbH.<br/>
 
 [license]: /LICENSE
 
+### Create a Dockerfile to build this app as image.
