@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+        stages {
+            stage('pull repo') {
+            steps {
+                echo 'pulling docker image...'
+                git 'https://github.com/MahmoudAbdelFatah/DevOps-Challenge-Demo-Code.git'
+            }
+        }
+        stage('build') {
+            steps {
+                echo 'building docker image...'
+                withCredentials([
+                    usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'USER', passwordVariable: 'PWD')
+                ]) {
+                    sh 'docker build -t mahmoudteha/nodejs:3.0 .'
+                    sh "echo $PWD | docker login -u $USER --password-stdin"
+                    sh 'docker push mahmoudteha/nodejs:3.0'
+                }
+            }
+        }
+        stage('deploy') {
+            steps {
+                sh 'cd kubernetes/'
+                sh 'kubectl apply .'
+            }
+        }
+    }
+}
