@@ -21,6 +21,7 @@ pipeline {
         }
         stage('CD') {
             steps {
+                sh 'kubectl create ns deploy-area'
                 sh 'kubectl apply -Rf kubernetes/ '
             }
         }
